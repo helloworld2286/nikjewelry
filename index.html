@@ -44,7 +44,7 @@
           <div id="alert" class="hidden mb-4 rounded-xl border px-4 py-3 text-sm"></div>
 
           <!-- Netlify-ready form (also works with standard POST). Replace/augment as needed.) -->
-          <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="grid grid-cols-1 gap-4" autocomplete="on">
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="grid grid-cols-1 gap-4" autocomplete="on" netlify>
             <!-- Netlify needs this hidden input to identify the form -->
             <input type="hidden" name="form-name" value="contact" />
             <p class="hp"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
@@ -148,3 +148,4 @@
   </script>
 </body>
 </html>
+
