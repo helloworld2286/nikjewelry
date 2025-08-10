@@ -1,39 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NIK Diamonds & Jewelry</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NIK Diamonds & Jewelry — Maintenance</title>
+  <meta name="description" content="NIK Diamonds & Jewelry — Site under maintenance. Contact us for inquiries." />
+  <link rel="icon" href="data:," />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #fce0d4;
-      font-family: 'Georgia', serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
+    :root{
+      /* Palette sampled to complement the provided logo */
+      --nik-gold:#9A6B2F;      /* primary gold */
+      --nik-gold-600:#7D5526;  /* darker accent */
+      --nik-cream:#F4F1EC;     /* page background */
+      --nik-ink:#2B2113;       /* dark text */
     }
-    
-    h1 {
-      font-size: 3.5rem;
-      color: #e95000;
-      margin: 0;
-      font-weight: 700;
-    }
-
-    h2 {
-      font-size: 2rem;
-      color: #e95000;
-      margin-top: 2rem;
-      font-weight: 600;
-    }
+    html,body{height:100%}
+    body{background:var(--nik-cream); color:var(--nik-ink)}
+    .brand-shadow{ text-shadow: 0 2px 0 rgba(0,0,0,.05);}    
+    .card{ backdrop-filter: blur(6px); }
+    /* hide honeypot */
+    .hp{position:absolute!important;left:-10000px!important;}
   </style>
 </head>
 <body>
-  <h1>NIK Diamonds & Jewelry</h1>
-  <h2>SOMETHING IS HAPPENING!</h2>
+  <main class="min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-3xl">
+      <!-- Brand / Header -->
+      <header class="text-center mb-8">
+        <!-- Replace src with your own path if needed -->
+        <img src="NIK 1.png" alt="NIK Diamonds & Jewelry logo" class="mx-auto h-40 w-auto" />
+        <h1 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight brand-shadow">We’re polishing something brilliant</h1>
+        <p class="mt-3 text-base sm:text-lg opacity-80">Our site is under maintenance. Please reach us using the form below and we’ll reply by email.</p>
+      </header>
+
+      <!-- Card -->
+      <section class="card rounded-2xl border bg-white/70 shadow-sm">
+        <div class="p-5 sm:p-8">
+          <h2 class="text-xl font-semibold mb-4">Contact Us</h2>
+
+          <!-- Success/Failure messages (client-side) -->
+          <div id="alert" class="hidden mb-4 rounded-xl border px-4 py-3 text-sm"></div>
+
+          <!-- Netlify-ready form (also works with standard POST). Replace/augment as needed.) -->
+          <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="grid grid-cols-1 gap-4" autocomplete="on">
+            <!-- Netlify needs this hidden input to identify the form -->
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hp"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="name">Full Name</label>
+                <input id="name" name="name" type="text" required
+                       placeholder="First and last name" 
+                       class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--nik-gold)]" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="email">Email</label>
+                <input id="email" name="email" type="email" required
+                       placeholder="you@example.com" 
+                       class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--nik-gold)]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="phone">Phone (optional)</label>
+                <input id="phone" name="phone" type="tel"
+                       placeholder="+1 (226) 555‑0123" 
+                       class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--nik-gold)]" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="subject">Subject</label>
+                <input id="subject" name="subject" type="text" required
+                       placeholder="Custom ring inquiry"
+                       class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--nik-gold)]" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1" for="message">Your Message</label>
+              <textarea id="message" name="message" rows="5" required
+                        placeholder="Tell us about the diamond or jewelry you’re looking for…"
+                        class="w-full rounded-xl border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--nik-gold)]"></textarea>
+              <div class="mt-1 text-xs text-slate-500"><span id="charCount">0</span>/1000</div>
+            </div>
+
+            <label class="inline-flex items-start gap-3 text-sm">
+              <input id="consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border" />
+              <span>I consent to NIK Diamonds & Jewelry contacting me about my inquiry.</span>
+            </label>
+
+            <div class="pt-2 flex items-center gap-3">
+              <button type="submit" class="inline-flex items-center justify-center rounded-2xl bg-[var(--nik-gold)] px-5 py-2.5 text-white font-medium shadow hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-[var(--nik-gold-600)]">Send Inquiry</button>
+              <button type="reset" class="rounded-2xl border px-4 py-2 text-sm">Reset</button>
+            </div>
+          </form>
+
+          <p class="mt-6 text-xs text-slate-500">Prefer email? Write to us at <a href="mailto:info@niksjewelry.com" class="underline decoration-[var(--nik-gold)] decoration-2 underline-offset-4 hover:opacity-80">info@niksjewelry.com</a>.</p>
+        </div>
+      </section>
+
+      <footer class="text-center text-xs opacity-70 mt-8">
+        <p>© <span id="y"></span> NIK Diamonds & Jewelry. All rights reserved.</p>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Character counter
+    const msg = document.getElementById('message');
+    const cc = document.getElementById('charCount');
+    const MAX = 1000;
+    function updateCount(){ cc.textContent = Math.min(msg.value.length, MAX); }
+    msg.addEventListener('input', updateCount); updateCount();
+
+    // Client-side success message (Netlify will still capture submission server-side)
+    const form = document.getElementById('contactForm');
+    const alertBox = document.getElementById('alert');
+
+    form.addEventListener('submit', function(e){
+      // If hosted on Netlify, a regular POST submit will work and redirect to same page.
+      // To keep the user on-page, we intercept and POST via fetch.
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(data).toString() })
+        .then(() => {
+          showAlert('Thank you! Your inquiry has been sent. We\'ll get back to you shortly.', true);
+          form.reset(); updateCount();
+        })
+        .catch(() => {
+          showAlert('Something went wrong. Please try again or email us at info@niksjewelry.com.', false);
+        });
+    });
+
+    function showAlert(msg, ok){
+      alertBox.textContent = msg;
+      alertBox.className = 'mb-4 rounded-xl px-4 py-3 text-sm ' + (ok ? 'border border-green-200 bg-green-50 text-green-800' : 'border border-red-200 bg-red-50 text-red-800');
+      alertBox.classList.remove('hidden');
+      setTimeout(()=> alertBox.classList.add('hidden'), 6000);
+    }
+  </script>
 </body>
 </html>
